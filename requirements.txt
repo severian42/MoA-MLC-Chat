@@ -1,0 +1,15 @@
+fire
+loguru
+datasets
+python-dotenv
+langchain
+langchain_community
+openai
+requests
+gradio
+mlc-llm-nightly 
+mlc-ai-nightly
+fastapi
+uvicorn
+pydantic
+huggingface_hub
