@@ -50,50 +50,36 @@ Mixture of Agents (MoA) is a cutting-edge approach that leverages multiple Large
 Edit the `.env` file to configure the following parameters:
 
 ```bash
-API_BASE=http://localhost:11434/v1
-API_KEY=ollama
+MLC_LLM_ENGINE_MODE = server
+MLC_LLM_MAX_BATCH_SIZE = 80
+MLC_LLM_MAX_KV_CACHE_SIZE = 32768
 
-API_BASE_2=http://localhost:11434/v1
-API_KEY_2=ollama
 
-MAX_TOKENS=4096
-TEMPERATURE=0.7
 ROUNDS=1
 
-MODEL_AGGREGATE=llama3:70b-instruct-q6_K
+MODEL_AGGREGATE=HF://mlc-ai/Hermes-2-Theta-Llama-3-8B-q4f16_1-MLC
+MODEL_REFERENCE_1=HF://mlc-ai/Qwen2-0.5B-Instruct-q4f16_1-MLC
+MODEL_REFERENCE_2=HF://mlc-ai/Phi-3-mini-128k-instruct-q4f16_1-MLC
+MODEL_REFERENCE_3=HF://mlc-ai/Qwen2-1.5B-Instruct-q4f32_1-MLC
 
-MODEL_REFERENCE_1=phi3:latest 
-MODEL_REFERENCE_2=llama3:latest
-MODEL_REFERENCE_3=phi3:3.8b-mini-instruct-4k-fp16
-
-OLLAMA_NUM_PARALLEL=4  
-OLLAMA_MAX_LOADED_MODELS=4
+MULTITURN=True
 ```
 
 ## Running the Application
 
-1. Start the Ollama server:
-
-   ```shell
-   OLLAMA_NUM_PARALLEL=4 OLLAMA_MAX_LOADED_MODELS=4 ollama serve
-   ```
-
-2. Launch the Gradio interface:
+1. Launch the Gradio interface:
 
    ```shell
    conda activate moa
    gradio app.py
    ```
 
-conda activate moa
-python run_api.py
-
-3. Open your web browser and navigate to the URL provided by Gradio (usually http://localhost:7860).
+3. Open your web browser and navigate to the URL http://localhost:4242.
 
 ## Advanced Usage
 
-- **Model Customization**: Easily switch between different reference and aggregate models to suit your needs.
-- **Parameter Tuning**: Adjust temperature, max tokens, and rounds to control the output's creativity and length.
+- **Model Customization**: Easily switch between different reference models to suit your needs.
+- **Parameter Tuning**: Adjust rounds to control the output's creativity and length.
 - **Multi-Turn Conversations**: Enable or disable context retention for more dynamic interactions.
 
 ## Performance Insights
